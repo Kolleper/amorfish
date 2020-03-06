@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace WpfApp1
 {
@@ -30,7 +31,7 @@ namespace WpfApp1
             set;
         }
 
-        public string BirthDay
+        public DateTime BirthDay
         {
             get;
             set;
