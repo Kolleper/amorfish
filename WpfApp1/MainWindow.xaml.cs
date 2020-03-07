@@ -20,9 +20,31 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly PersonCollection persons;
         public MainWindow()
         {
             InitializeComponent();
+            persons = new PersonCollection();
+            DataContext = persons;
         }
+
+        private void ButtonAddClick(object sender, RoutedEventArgs e)
+        {
+            persons.AddNewPerson();
+        }
+        private void ButtonRemoveClick(object sender, RoutedEventArgs e)
+        {
+            while (listView.SelectedItems.Count > 0)
+            {
+                persons.RemovePerson((PersonInformation)listView.SelectedItems[0]);
+            }
+        }
+        //private void DatePicker_SelectedChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    DateTime? selectedDate = calendar1.SelectedDate;
+
+        //    MessageBox.Show(selectedDate.Value.Date.ToShortDateString());
+        //}
+
     }
 }

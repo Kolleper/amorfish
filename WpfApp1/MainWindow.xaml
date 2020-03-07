@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="616" Width="800">
+    
     <DockPanel Margin="4">
         <Grid DockPanel.Dock="Top" Height="226">
             <Grid.ColumnDefinitions>
@@ -21,39 +22,45 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО:" Margin="1"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="1,1,396,1"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewPerson.FullName}" Margin="1,1,396,1"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Пол:" Margin="1"/>
-            <ComboBox  Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="1,0,0,0" Width="268" Height="36"/>
+            <ComboBox  Grid.Row="1"  Grid.Column="1" Text="{Binding NewPerson.Gender}" Margin="1,0,396,1" Height="36">
+                <ComboBoxItem Content="Мужской"/>
+                <ComboBoxItem Content="Женский"/>
+            </ComboBox>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Телефон:" Margin="1"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="1,1,396,1"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewPerson.NumberOfPhone}" Margin="1,1,396,1"/>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Домашний адрес:" Margin="1"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="1,1,396,1"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewPerson.HomeAdress}" Margin="1,1,396,1"/>
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата рождения:"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Margin="1,1,396,1"/>
+            <DatePicker  Grid.Row="4" Grid.Column="1" Name="dp1" DisplayDate="2020-01-01" Text="{Binding NewPerson.BirthDay}" Margin="1,1,396,1"></DatePicker>
 
-            <StackPanel Grid.Row="4" Orientation="Horizontal"
-                        Margin="1,39,586,-31" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="5" Orientation="Horizontal"
+                        Margin="10,5,577,3" Grid.ColumnSpan="2">
                 <Button
-                    MinHeight="25" MinWidth="100"
-                    Content="Добавить" Margin="1"
+                    MinHeight="25" MinWidth="90"
+                    Content="Добавить"
                     Click="ButtonAddClick"/>
                 <Button
-                    MinHeight="25" MinWidth="100"
-                    Content="Удалить" Margin="1"
+                    MinHeight="25" MinWidth="90"
+                    Content="Удалить"
                     Click="ButtonRemoveClick"/>
             </StackPanel>
 
 
+
+
         </Grid>
-        <ListView Name="listView">
+        <ListView Name="listView"
+                  ItemsSource="{Binding Persons}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="ФИО"/>
-                        <GridViewColumn Header="Пол"/>
-                        <GridViewColumn Header="Телефон"/>
-                        <GridViewColumn Header="Домашний адрес"/>
-                        <GridViewColumn Header="Дата рождения"/>
+                        <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding FullName}"/>
+                        <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Gender}"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding NumberOfPhone}"/>
+                        <GridViewColumn Header="Домашний адрес" DisplayMemberBinding="{Binding HomeAdress}"/>
+                        <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding BirthDay}"/>
                         <GridViewColumn Header="Доп.Информация"/>
                     </GridView.Columns>
                 </GridView>

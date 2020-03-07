@@ -5,7 +5,7 @@ using System.Data;
 
 namespace WpfApp1
 {
-    class PersonInformation
+    public class PersonInformation
     {
         public string FullName
         {
@@ -19,7 +19,7 @@ namespace WpfApp1
             set;
         }
 
-        public int NubmerOfPhone
+        public string NumberOfPhone
         {
             get;
             set;
