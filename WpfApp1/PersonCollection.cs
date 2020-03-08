@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Controls;
 
 namespace WpfApp1
 {
@@ -39,11 +40,11 @@ namespace WpfApp1
                 }
             }
         }
-
         public void AddNewPerson()
         {
             persons.Add(newPerson);
             NewPerson = new PersonInformation();
+            
         }
 
         public void RemovePerson(PersonInformation person)
@@ -57,5 +58,6 @@ namespace WpfApp1
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

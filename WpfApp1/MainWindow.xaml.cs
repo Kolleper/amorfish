@@ -32,6 +32,7 @@ namespace WpfApp1
         {
             persons.AddNewPerson();
         }
+
         private void ButtonRemoveClick(object sender, RoutedEventArgs e)
         {
             while (listView.SelectedItems.Count > 0)
@@ -39,12 +40,6 @@ namespace WpfApp1
                 persons.RemovePerson((PersonInformation)listView.SelectedItems[0]);
             }
         }
-        //private void DatePicker_SelectedChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    DateTime? selectedDate = calendar1.SelectedDate;
-
-        //    MessageBox.Show(selectedDate.Value.Date.ToShortDateString());
-        //}
 
     }
 }

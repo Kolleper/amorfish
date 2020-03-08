@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="616" Width="800">
-    
+
     <DockPanel Margin="4">
         <Grid DockPanel.Dock="Top" Height="226">
             <Grid.ColumnDefinitions>
@@ -33,7 +33,8 @@
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Домашний адрес:" Margin="1"/>
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewPerson.HomeAdress}" Margin="1,1,396,1"/>
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата рождения:"/>
-            <DatePicker  Grid.Row="4" Grid.Column="1" Name="dp1" DisplayDate="2020-01-01" Text="{Binding NewPerson.BirthDay}" Margin="1,1,396,1"></DatePicker>
+            <DatePicker  Grid.Row="4" Grid.Column="1" Name="dp1" SelectedDate="{Binding NewPerson.BirthDay, Mode=TwoWay}" Margin="1,1,396,1" />
+            <!--SelectedDate="{Binding Path=NewPerson.BirthDay}" DisplayDate="{Binding DateTime.Now}"-->
 
             <StackPanel Grid.Row="5" Orientation="Horizontal"
                         Margin="10,5,577,3" Grid.ColumnSpan="2">
@@ -60,7 +61,7 @@
                         <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Gender}"/>
                         <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding NumberOfPhone}"/>
                         <GridViewColumn Header="Домашний адрес" DisplayMemberBinding="{Binding HomeAdress}"/>
-                        <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding BirthDay}"/>
+                        <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding BirthDay, StringFormat=yyyy/MM/dd}"/>
                         <GridViewColumn Header="Доп.Информация"/>
                     </GridView.Columns>
                 </GridView>
