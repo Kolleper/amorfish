@@ -30,8 +30,6 @@ namespace WpfApp1
             get;
             set;
         }
-
-
         public DateTime BirthDay { get; set; } = DateTime.Now;
     }
 }

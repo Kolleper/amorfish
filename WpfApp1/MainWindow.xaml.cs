@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace WpfApp1
+/*namespace WpfApp1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -33,6 +22,19 @@ namespace WpfApp1
             persons.AddNewPerson();
         }
 
+        private void InkCanvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.T)
+                ToggleEditingMode();
+        }
+        private void ToggleEditingMode()
+        {
+            if (inkCanvas.EditingMode == InkCanvasEditingMode.Ink)
+                inkCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
+            else
+                inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+        }
+
         private void ButtonRemoveClick(object sender, RoutedEventArgs e)
         {
             while (listView.SelectedItems.Count > 0)
@@ -41,5 +43,6 @@ namespace WpfApp1
             }
         }
 
+
     }
-}
+}*/
