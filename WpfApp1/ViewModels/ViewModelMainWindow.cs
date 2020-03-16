@@ -1,20 +1,16 @@
 ﻿using WpfApp1.Common;
-using WpfApp1.Database;
 using WpfApp1.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-//using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace WpfApp1.ViewModels
 {
     class ViewModelMainWindow : ModelBase
     {
-        //public Datamanager DbManager { get; set; }
         private Employee _ActEmployee;
 
         private bool _EmployeeExist;
@@ -62,8 +58,8 @@ namespace WpfApp1.ViewModels
         }
 
         public ICommand AddCommand { get { return new RelayCommand(Add); } }
-        //public ICommand UpdateCommand { get { return new RelayCommand(Update); } }
-        //public ICommand SaveCommand { get { return new RelayCommand(Save, DbManager.ChangeTracker.HasChanges); } }
+        public ICommand UpdateCommand { get { return new RelayCommand(Update); } }
+        public ICommand SaveCommand { get { return new RelayCommand(Save); } }
         public ICommand DeleteCommand { get { return new RelayCommand(Delete, () => EmployeeExist); } }
 
 
@@ -82,6 +78,29 @@ namespace WpfApp1.ViewModels
         //{
         //    DbManager.SaveChanges();
         //}
+        private void Update()
+        {
+            if (File.Exists("employees.db"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream fs = new FileStream("employees.db", FileMode.Open);
+                Employees = (ObservableCollection<Employee>)formatter.Deserialize(fs);
+                fs.Close();
+            }
+            else
+            {
+                Employees = new ObservableCollection<Employee>();
+            }
+            EmployeeExist = Employees.Count > 0;
+            ActEmployee = Employees.FirstOrDefault();
+        }
+        private void Save()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream fs = new FileStream("employees.db", FileMode.OpenOrCreate);
+            formatter.Serialize(fs, Employees);
+            fs.Close();
+        }
 
         private void Delete()
         {
@@ -89,7 +108,6 @@ namespace WpfApp1.ViewModels
             {
                 Employees.Remove(ActEmployee);
                 EmployeeExist = Employees.Count > 0;
-
                 ActEmployee = Employees.FirstOrDefault();
             }
         }
@@ -99,8 +117,6 @@ namespace WpfApp1.ViewModels
             Employees.Add(new Employee() { DayOfBirth = DateTime.Now.Date });
             ActEmployee = Employees.LastOrDefault();
             EmployeeExist = Employees.Count > 0;
-
-            //var hc = DbManager.ChangeTracker.HasChanges();
         }
     }
 }

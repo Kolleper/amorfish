@@ -7,7 +7,7 @@ using WpfApp1.Common;
 
 namespace WpfApp1.Models
 {
-    [Table("Employee")]
+    [Serializable]
     class Employee : ModelBase
     {
         #region Fields
