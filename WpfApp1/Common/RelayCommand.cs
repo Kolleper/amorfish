@@ -7,6 +7,7 @@ namespace WpfApp1.Common
 {
     class RelayCommand : ICommand
     {
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
